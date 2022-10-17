@@ -1,0 +1,17 @@
+Apa itu laravel? Adalah sebuah kerangka aplikasi web yang elegan dan ekspresif
+
+Apa itu web aplication framework ?
+-Sebuah kerangka yang didesain untuk mendukung pembuatan web
+-menyediakan standar membangun aplikasi
+-mengoptimasi hal hal umum
+-database library,template engine, dll
+
+dibuat oleh Taylor otwell juni 2011
+
+fitur utama laravel
+-MVC
+-Temolate Engine
+-Artisan Console
+-Eloquent ORM
+-Authorization & Autenthication
+-DLL
