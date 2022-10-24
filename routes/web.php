@@ -1,9 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use PhpParser\Node\Stmt\Return_;
 
+use Illuminate\Support\Facades\Route;
 use function PHPUnit\Framework\returnValue;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,79 +34,7 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog', function () {
-    
-$blog_post = [
-    [
-        "title" => "Judul Post Pertama",
-        "slug" => "judul-post-pertama",
-        "author" => "Piyul Alas Majapahit",
-        "body" => "JLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-        Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-        Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-        enim cum error repudiandae?"
-    ],
-
-    [
-        "title" => "Judul Post Kedua",
-        "slug" => "judul-post-kedua",
-        "author" => "Piyul Alas Majapahit",
-        "body" => "JLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-        Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-        Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-        enim cum error repudiandae?JLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-        Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-        Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-        enim cum error repudiandaeJLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-        Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-        Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-        enim cum error repudiandae"
-    ],
-];
-    return view('posts',[
-        "title" => "posts",
-        "posts" => $blog_post
-    ]);
-});
+Route::get('/blog',[PostController::class,'index']);
 
 //halaman single post
-Route::get('posts/{slug}', function ($slug) {
-    $blog_post = [
-        [
-            "title" => "Judul Post Pertama",
-            "slug" => "judul-post-pertama",
-            "author" => "Piyul Alas Majapahit",
-            "body" => "JLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-            Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-            enim cum error repudiandae?"
-        ],
-    
-        [
-            "title" => "Judul Post Kedua",
-            "slug" => "judul-post-kedua",
-            "author" => "Piyul Alas Majapahit",
-            "body" => "JLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-            Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-            enim cum error repudiandae?JLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-            Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-            enim cum error repudiandaeJLorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Excepturi amet eum repellat dolor necessitatibus quasi hic blanditiis. 
-            Quam voluptatibus totam sunt numquam expedita placeat perspiciatis ipsam,
-            enim cum error repudiandae"
-        ],
-    ];
-
-    $new_post = [];
-    foreach ($blog_post as $post) {
-        if ($post["slug"] === $slug) {
-            $new_post = $post;
-        }
-    }
-    return view ('post',[
-        "title" => "Single Post",
-        "post" => $new_post
-    ]);
-});
+Route::get('posts/{slug}', [PostController::class,'show']);
