@@ -7,18 +7,22 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index(){         
-        return view('posts',[
+    public function index()
+    {
+        return view('posts', [
             "title" => "All Posts",
-            // "posts" => Post::all()
-            "posts" => Post::with(['author','category'])->latest()->get()
+            "active" => 'posts',
+            //"posts" => Post::all()
+            "posts" => Post::latest()->get()
         ]);
     }
 
-    public function show(post $post){
-        return view ('post',[
+    public function show(Post $post)
+    {
+        return view('post', [
             "title" => "Single Post",
+            "active" => 'posts',
             "post" => $post
         ]);
-    } 
+    }
 }

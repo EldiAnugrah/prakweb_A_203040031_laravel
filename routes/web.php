@@ -22,13 +22,13 @@ use function PHPUnit\Framework\returnValue;
 */
 
 Route::get('/', function () {
-    return view('home' ,[    
+    return view('home', [
         "title" => "Home"
     ]);
 });
 
 Route::get('/about', function () {
-    return view('about',[
+    return view('about', [
         "title" => "About",
         "name" => "Eldi Anugrah",
         "email" => "203040031@mail.unpas.ac.id",
@@ -36,29 +36,31 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog',[PostController::class,'index']);
+Route::get('/blog', [PostController::class, 'index']);
 //halaman single post
-Route::get('posts/{post:slug}', [PostController::class,'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 
-Route::get('/categories', function(){
+Route::get('/categories', function () {
     return view('categories', [
-        'title' => 'post Categories',
-        'categories' => Category::all() 
+        'title' => 'Post Categories',
+        'active' => 'categories',
+        'categories' => Category::all()
     ]);
-}); 
+});
 
-Route::get('/categories/{category:slug}', function(Category $category){
+
+Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
         'title' => "Post by Category : $category->name",
-        'posts' => $category->posts->load('category','author')
+        'active' => 'categories',
+        'posts' => $category->posts->load('category', 'author')
     ]);
-}); 
-
+});
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
         'title' => "Post by Author : $author->name",
-        'posts' => $author->posts->load('category','author')
+        'posts' => $author->posts->load('category', 'author')
     ]);
 });
