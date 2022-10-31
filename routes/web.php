@@ -23,13 +23,15 @@ use function PHPUnit\Framework\returnValue;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        'active' => 'home'
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
+        'active' => 'about',
         "name" => "Eldi Anugrah",
         "email" => "203040031@mail.unpas.ac.id",
         "image" => "eldi.jpeg"
@@ -61,6 +63,7 @@ Route::get('categories/{category:slug}', function (Category $category) {
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
         'title' => "Post by Author : $author->name",
+        'active' => 'blog',
         'posts' => $author->posts->load('category', 'author')
     ]);
 });
