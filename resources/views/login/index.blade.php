@@ -3,6 +3,15 @@
 @section('container')
     <div class="row justify-content-center">
         <div class="col-md-5">
+
+            @if (session()->has('Berhasil'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('Berhasil') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <h1 class="h3 mb-3 font-weight-normal text-center">Login Dulu Banh</h1>
             <form class="form-signin">
                 <label for="inputEmail" class="sr-only">Email address</label>

@@ -2,33 +2,57 @@
 
 @section('container')
     <div class="row justify-content-center">
-        <div class="col-lg-5">
-            <main class="form-registration">
-                <h1 class="h3 mb-3 font-weight-normal text-center">Daftar Banh</h1>
-                <form>
+        <div class="col-md-5">
+            <main class="form-registration w-100 m-auto">
+                <h1 class="h3 mb-3 fw-normal text-center">Registration Form</h1>
+                <form class="/register" method="post">
+                    @csrf
                     <div class="form-floating">
-                        <label for="inputEmail" class="sr-only" id="email"></label>
-                        <input type="email" id="email" class="form-control" placeholder="Email address" required
-                            autofocus>
+                        <label for="name">Name</label>
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <input type="text" name="name"
+                            class="form-control rounded-top @error('name') is-invalid @enderror" id="name"
+                            placeholder="Name" required value="{{ old('name') }}">
                     </div>
                     <div class="form-floating">
-                        <label for="inputEmail" class="sr-only" id="name">Name</label>
-                        <input type="name" name="name" id="name" class="form-control" placeholder="Name" required
-                            autofocus>
+                        <label for="username">Username</label>
+                        @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
+                            id="username" placeholder="Username" required value="{{ old('username') }}">
                     </div>
                     <div class="form-floating">
-                        <label for="inputEmail" class="sr-only" id="username">Username</label>
-                        <input type="name" name="username" id="username" class="form-control" placeholder="username"
-                            required autofocus>
+                        <label for="email">Email address</label>
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                            id="email" placeholder="name@example.com" required value="{{ old('email') }}">
                     </div>
-                    <label for="Password" class="sr-only">Password</label>
-                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Password"
-                        required>
-                    <div class="checkbox mb-3">
+                    <div class="form-floating">
+                        <label for="password">Password</label>
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <input type="password" name="password"
+                            class="form-control rounded-bottom @error('password') is-invalid @enderror" id="password"
+                            placeholder="Password" required>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Register</button>
                 </form>
-                <small class="d-block text-center mt-4">Sudah Daftar? <a href="/login">Gas Masuk </a></small>
+                <small class="d-block text-center mt-3">Already Registered?<a class="text-decoration-none" href="/login">
+                        Login</a></small>
             </main>
         </div>
     </div>
