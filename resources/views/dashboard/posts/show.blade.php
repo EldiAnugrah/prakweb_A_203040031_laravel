@@ -18,7 +18,6 @@
                     {!! $post->body !!}
                 </article>
                 <br>
-                <a href="/blog">Kembali</a>
             </div>
         </div>
     </div>
