@@ -33,6 +33,7 @@
                     </div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="category" class="form-label">category</label>
                 <select class="form-select" name="category_id">
